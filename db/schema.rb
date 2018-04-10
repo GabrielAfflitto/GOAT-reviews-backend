@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410175448) do
+ActiveRecord::Schema.define(version: 20180410220430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20180410175448) do
     t.bigint "user_id"
     t.string "body"
     t.integer "rating"
+    t.bigint "album_id"
+    t.index ["album_id"], name: "index_reviews_on_album_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
@@ -45,7 +47,7 @@ ActiveRecord::Schema.define(version: 20180410175448) do
     t.string "spotify"
     t.string "itunes"
     t.string "googleplay"
-    t.string "amazon"
+    t.string "album"
     t.index ["artist_id"], name: "index_songs_on_artist_id"
   end
 
@@ -57,6 +59,7 @@ ActiveRecord::Schema.define(version: 20180410175448) do
   end
 
   add_foreign_key "albums", "artists"
+  add_foreign_key "reviews", "albums"
   add_foreign_key "reviews", "users"
   add_foreign_key "songs", "artists"
 end
