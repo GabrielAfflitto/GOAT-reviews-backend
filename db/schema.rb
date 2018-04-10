@@ -10,16 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180407223309) do
+ActiveRecord::Schema.define(version: 20180410175448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "albums", force: :cascade do |t|
+    t.bigint "artist_id"
+    t.string "name"
+    t.string "year"
+    t.string "spotify"
+    t.string "itunes"
+    t.string "googleplay"
+    t.string "amazon"
+    t.index ["artist_id"], name: "index_albums_on_artist_id"
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name"
+  end
 
   create_table "reviews", force: :cascade do |t|
     t.bigint "user_id"
     t.string "body"
     t.integer "rating"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.bigint "artist_id"
+    t.string "name"
+    t.string "year"
+    t.string "youtube"
+    t.string "spotify"
+    t.string "itunes"
+    t.string "googleplay"
+    t.string "amazon"
+    t.index ["artist_id"], name: "index_songs_on_artist_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -29,5 +56,7 @@ ActiveRecord::Schema.define(version: 20180407223309) do
     t.string "uri"
   end
 
+  add_foreign_key "albums", "artists"
   add_foreign_key "reviews", "users"
+  add_foreign_key "songs", "artists"
 end
