@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :artists, only: [:index, :show]
       resources :albums, only: [:index, :show] do
-        resources :reviews, only: [:create]
+        resources :reviews, only: [:new, :create]
       end
       resources :users, only: [:show, :create]
       post 'auth', to: 'users#create'
