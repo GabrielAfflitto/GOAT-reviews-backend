@@ -3,10 +3,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :artists, only: [:index, :show] do
-        resources :albums, only: [:show]
+      resources :artists, only: [:index, :show]
+      resources :albums, only: [:index, :show] do
+        resources :reviews, only: [:new, :create]
       end
-      resources :albums, only: [:index]
+      resources :users, only: [:show, :create]
+      post 'auth', to: 'users#create'
     end
   end
 end
