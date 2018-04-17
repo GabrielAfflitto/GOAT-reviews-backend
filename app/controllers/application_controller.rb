@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   include ActionController::Helpers
+  include ActionController::Serialization
 
   helper_method :current_user, :authenticate_user!
 
