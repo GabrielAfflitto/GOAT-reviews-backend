@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :albums, only: [:index, :show] do
         resources :reviews, only: [:new, :create]
       end
-      resources :users, only: [:show, :create]
+      resources :users, only: [:index, :show, :create]
       post 'auth', to: 'users#create'
     end
   end

@@ -1,7 +1,5 @@
 class Api::V1::ReviewsController < ApplicationController
 
-  before_action :authenticate_user!
-
   def new
   end
 
@@ -13,7 +11,7 @@ class Api::V1::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:rating, :user_id, :body)
+    params.permit(:rating, :user_id, :body)
   end
 
 end
