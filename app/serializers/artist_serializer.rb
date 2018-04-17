@@ -1,5 +1,5 @@
 class ArtistSerializer < ActiveModel::Serializer
-  attributes :id, :name, :albums, :songs
+  attributes :id, :name, :albums, :songs, :image
 
   def albums
     object.albums.map do |album|

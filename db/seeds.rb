@@ -6,9 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Artist.destroy_all
 Song.destroy_all
+Review.destroy_all
 Album.destroy_all
+Artist.destroy_all
 
 rappers = [
 "Hieroglyphics",
@@ -250,7 +251,9 @@ rappers = [
 ]
 
 rappers.each do |rapper|
-  Artist.create!(name: rapper)
+  size = rand(200..300)
+  size2 = rand(200..300)
+  Artist.create!(name: rapper, image: "https://placebear.com/#{size}/#{size2}")
 end
 
 

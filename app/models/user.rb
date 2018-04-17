@@ -2,11 +2,12 @@ class User < ApplicationRecord
 
   has_many :reviews
 
-  def self.from_auth(params)
-    user = User.find_by(email: params[:email])
-    user.update(params)
+  def self.from_auth(auth)
+    user = User.find_by(auth[:id])
+    user.update(auth)
     if user.nil?
-      User.create(params)
+      user = User.create(auth)
+      user.save!
     end
     user
   end
