@@ -4,7 +4,9 @@ class User < ApplicationRecord
 
   def self.from_auth(auth)
     user = User.find_by(auth[:id])
-    user.update(auth)
+    if user
+      user.update(auth)
+    end
     if user.nil?
       user = User.create(auth)
       user.save!
