@@ -5,7 +5,7 @@ class Api::V1::ReviewsController < ApplicationController
 
   def create
     album = Album.find(params[:album_id])
-    album.reviews.create!(review_params)
+    render json: album.reviews.create!(review_params), status: 201
   end
 
   private
